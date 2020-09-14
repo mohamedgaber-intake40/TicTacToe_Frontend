@@ -10,6 +10,7 @@ import {AppRoutingModuleModule} from './app-routing-module/app-routing-module.mo
 import { NavComponent } from './nav/nav.component';
 import {AuthInterceptor} from './Interceptor/auth.interceptor';
 import { OnlineComponent } from './online/online.component';
+import { FilterOnlinePipe } from './pipes/filter-online.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { OnlineComponent } from './online/online.component';
     RegisterComponent,
     NavComponent,
     OnlineComponent,
+    FilterOnlinePipe,
   ],
   imports: [
     BrowserModule,
