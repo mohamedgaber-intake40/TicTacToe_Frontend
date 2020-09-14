@@ -9,6 +9,7 @@ import {HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AppRoutingModuleModule} from './app-routing-module/app-routing-module.module';
 import { NavComponent } from './nav/nav.component';
 import {AuthInterceptor} from './Interceptor/auth.interceptor';
+import { OnlineComponent } from './online/online.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {AuthInterceptor} from './Interceptor/auth.interceptor';
     LoginComponent,
     RegisterComponent,
     NavComponent,
+    OnlineComponent,
   ],
   imports: [
     BrowserModule,

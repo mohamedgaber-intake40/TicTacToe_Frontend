@@ -22,7 +22,7 @@ export class LocalStorageService {
     let user = localStorage.getItem('user');
     if(user){
     user = JSON.parse(user);
-    return  User.createUser(user);
+    return  User.createUser(user,true);
     }
   }
 

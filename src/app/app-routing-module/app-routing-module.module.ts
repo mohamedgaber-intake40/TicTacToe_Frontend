@@ -5,6 +5,7 @@ import {LoginComponent} from '../Auth/login/login.component';
 import {RegisterComponent} from '../Auth/register/register.component';
 import {AuthGuard} from '../Auth/services/auth.guard';
 import {RedirectGuard} from '../Auth/services/redirect.guard';
+import {OnlineComponent} from '../online/online.component';
 
 const routes:Routes=[
   {
@@ -16,6 +17,11 @@ const routes:Routes=[
     path:'register',
     component:RegisterComponent,
     canActivate:[RedirectGuard]
+  },
+  {
+    path:'online',
+    component:OnlineComponent,
+    canActivate:[AuthGuard]
   },
 
 ];
