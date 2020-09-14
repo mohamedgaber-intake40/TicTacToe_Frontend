@@ -11,6 +11,8 @@ import { NavComponent } from './nav/nav.component';
 import {AuthInterceptor} from './Interceptor/auth.interceptor';
 import { OnlineComponent } from './online/online.component';
 import { FilterOnlinePipe } from './pipes/filter-online.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,15 @@ import { FilterOnlinePipe } from './pipes/filter-online.pipe';
     OnlineComponent,
     FilterOnlinePipe,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModuleModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModuleModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+
+    ],
   providers: [
     {
       provide:HTTP_INTERCEPTORS,

@@ -7,6 +7,7 @@ import {User} from '../Auth/Models/user';
 export class FilterOnlinePipe implements PipeTransform {
 
   transform(users: User[], id: any): unknown {
+    // console.log(id);
     if(users){
       return users.filter(user=>{
         return user.id != id;

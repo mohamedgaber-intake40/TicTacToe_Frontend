@@ -31,4 +31,14 @@ export class LocalStorageService {
     localStorage.clear();
     this.subject.next(null)
   }
+
+  isLogged()
+  {
+    let user = localStorage.getItem('user');
+    if(user) {
+      user = JSON.parse(user);
+      return true;
+    }
+    return false;
+  }
 }

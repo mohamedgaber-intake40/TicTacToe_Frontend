@@ -19,8 +19,12 @@ export class OnlineFeedService {
             // console.log(users);
             onlineService.onlineUsers = User.createUsers(users);
             this.onlineService.subject.next(true);
-        }).joining(user=>{
-
+        }).joining(joiningUser=>{
+          console.log('joining fired');
+            const user = User.createUser(joiningUser,false);
+            console.log(user);
+            onlineService.onlineUsers.push(user);
+            this.onlineService.subject.next(true);
         }).leaving(user=>{
         console.log("leaving fired");
         // console.log(user);

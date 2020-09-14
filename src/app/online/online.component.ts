@@ -4,6 +4,7 @@ import {User} from '../Auth/Models/user';
 import {OnlineService} from './services/online.service';
 import {Subscription} from 'rxjs';
 import {LocalStorageService} from '../services/local-storage.service';
+import {NotificationService} from '../services/notification.service';
 
 @Component({
   selector: 'app-online',
@@ -12,15 +13,20 @@ import {LocalStorageService} from '../services/local-storage.service';
 })
 export class OnlineComponent implements OnInit,OnDestroy {
   onlineUsers: User[] = [];
-  current_user :User;
+  currentUser :User;
   onlineServiceSubjectSubscription :Subscription;
-  constructor(private onlineFeedService:OnlineFeedService,private onlineService:OnlineService , private localStorageService:LocalStorageService) {
+  constructor(private onlineFeedService:OnlineFeedService,
+              private onlineService:OnlineService ,
+              private localStorageService:LocalStorageService,
+              private notificationService:NotificationService) {
 
     this.onlineServiceSubjectSubscription = this.onlineService.subject.subscribe(res=>{
+      console.log('next fired');
       this.onlineUsers=this.onlineService.onlineUsers;
+      console.log(this.onlineUsers);
     });
 
-    this.current_user = this.localStorageService.getUser();
+    this.currentUser = this.localStorageService.getUser();
   }
 
   ngOnInit(): void {
@@ -35,8 +41,14 @@ export class OnlineComponent implements OnInit,OnDestroy {
   filterOnlineUsers()
   {
     return this.onlineUsers.filter(user=>{
-      return user.id != this.current_user.id;
+      return user.id != this.currentUser.id;
     });
+  }
+
+  onPlay(user)
+  {
+    console.log(user);
+    this.notificationService.invitePlayer(user.id);
   }
 
 

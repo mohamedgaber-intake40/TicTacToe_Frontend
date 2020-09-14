@@ -1,0 +1,19 @@
+mat-drawer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.example-container {
+  width: 500px;
+  height: 500px;
+  /*margin: 12px;*/
+}
+
+mat-drawer {
+  background: #ddd;
+  width: 300px;
+}
+
+.user-row:hover{
+  color: red;
+}
