@@ -20,6 +20,8 @@ export class NotificationService {
 
     invitePlayer(id)
   {
-    this.httpClient.get(`invite/${id}`);
+    this.httpClient.get(`api/invite/${id}`).subscribe(res=>{
+      // console.log(res);
+    });
   }
 }

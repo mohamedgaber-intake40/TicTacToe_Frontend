@@ -48,6 +48,7 @@ export class OnlineComponent implements OnInit,OnDestroy {
   onPlay(user)
   {
     console.log(user);
+    console.log(user.id);
     this.notificationService.invitePlayer(user.id);
   }
 
