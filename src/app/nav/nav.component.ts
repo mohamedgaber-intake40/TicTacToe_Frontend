@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LocalStorageService} from '../services/local-storage.service';
-import {User} from '../Auth/Models/user';
-import {LogoutService} from '../Auth/services/logout.service';
+import { LocalStorageService } from '../services/local-storage.service';
+import { User } from '../Auth/Models/user';
+import { LogoutService } from '../Auth/services/logout.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,9 +9,9 @@ import {LogoutService} from '../Auth/services/logout.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  user:User;
-  constructor(private localStorageService:LocalStorageService,private logoutService:LogoutService) {
-    this.localStorageService.subject.subscribe(user=>{
+  user: User;
+  constructor(private localStorageService: LocalStorageService, private logoutService: LogoutService) {
+    this.localStorageService.subject.subscribe(user => {
       this.user = user;
     })
   }
@@ -19,8 +19,7 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.localStorageService.getUser();
   }
-  onLogout(e)
-  {
+  onLogout(e) {
     e.preventDefault();
     this.logoutService.logout();
     // this.ngOnInit();

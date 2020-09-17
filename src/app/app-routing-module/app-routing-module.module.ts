@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from '../Auth/login/login.component';
-import {RegisterComponent} from '../Auth/register/register.component';
-import {AuthGuard} from '../Auth/services/auth.guard';
-import {RedirectGuard} from '../Auth/services/redirect.guard';
-import {OnlineComponent} from '../online/online.component';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from '../Auth/login/login.component';
+import { RegisterComponent } from '../Auth/register/register.component';
+import { AuthGuard } from '../Auth/services/auth.guard';
+import { RedirectGuard } from '../Auth/services/redirect.guard';
+import { OnlineComponent } from '../online/online.component';
 
-const routes:Routes=[
+const routes: Routes = [
   {
-    path:'login',
-    component:LoginComponent,
-    canActivate:[RedirectGuard]
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [RedirectGuard]
   },
   {
-    path:'register',
-    component:RegisterComponent,
-    canActivate:[RedirectGuard]
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [RedirectGuard]
   },
   {
-    path:'online',
-    component:OnlineComponent,
-    canActivate:[AuthGuard]
+    path: 'online',
+    component: OnlineComponent,
+    canActivate: [AuthGuard]
   },
 
 ];
@@ -32,6 +32,6 @@ const routes:Routes=[
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  exports:[RouterModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModuleModule { }

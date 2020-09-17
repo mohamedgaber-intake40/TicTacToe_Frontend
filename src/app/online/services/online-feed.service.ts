@@ -17,13 +17,13 @@ export class OnlineFeedService {
         .here(users=>{
             console.log("here fired");
             // console.log(users);
-            onlineService.onlineUsers = User.createUsers(users);
+            this.onlineService.onlineUsers = User.createUsers(users);
             this.onlineService.subject.next(true);
         }).joining(joiningUser=>{
           console.log('joining fired');
             const user = User.createUser(joiningUser,false);
             console.log(user);
-            onlineService.onlineUsers.push(user);
+            this.onlineService.onlineUsers.push(user);
             this.onlineService.subject.next(true);
         }).leaving(user=>{
         console.log("leaving fired");
@@ -34,7 +34,7 @@ export class OnlineFeedService {
         .listen('.user.logged.in',e =>{
             console.log("listen fired");
             const user = User.createUser(e.user,false);
-            onlineService.onlineUsers.push(user);
+            this.onlineService.onlineUsers.push(user);
             this.onlineService.subject.next(true);
         });
   }

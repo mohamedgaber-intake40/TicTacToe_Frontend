@@ -1,30 +1,27 @@
-
-
 <mat-drawer-container class="example-container" [hasBackdrop]="1">
   <mat-drawer #drawer mode="push" opened>
-<!--    I'm a drawer-->
-   <div class="container">
-     <div class="row mt-1 user-row" *ngFor="let user of onlineUsers">
-       <div class="col-8 p-1">
-         <span class="material-icons text-success">
+    <!--    I'm a drawer-->
+    <div class="container">
+      <div class="row mt-1 user-row" *ngFor="let user of onlineUsers">
+        <div class="col-8 p-1">
+          <span class="material-icons text-success">
             account_circle
           </span>
-         {{user.name}}
-       </div>
-       <div class="col-4" >
-         <button class="btn btn-success btn-sm" *ngIf="user.id != currentUser.id" (click)="onPlay(user)">Play</button>
-       </div>
-     </div>
-   </div>
+          {{user.name}}
+        </div>
+        <div class="col-4">
+          <button class="btn btn-success btn-sm" *ngIf="user.id != currentUser.id" (click)="onPlay(user)">Play</button>
+        </div>
+      </div>
+    </div>
   </mat-drawer>
 
   <mat-drawer-content>
-     <button  (click)="drawer.toggle()" class="btn btn-success">
-       <span class="material-icons">
-          people
-        </span>
-     </button>
+    <button (click)="drawer.toggle()" class="btn btn-success">
+      <span class="material-icons">
+        people
+      </span>
+    </button>
   </mat-drawer-content>
 
 </mat-drawer-container>
-
