@@ -4,8 +4,8 @@ mat-drawer-content {
   align-items: flex-start;
 }
 .example-container {
-  width: 500px;
-  height: 500px;
+  /*width: 500px;*/
+  height: 100%;
   /*margin: 12px;*/
 }
 
@@ -16,4 +16,9 @@ mat-drawer {
 
 .user-row:hover{
   color: red;
+}
+
+.mat-drawer-container
+{
+  background: transparent !important;
 }

@@ -17,11 +17,23 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <button (click)="drawer.toggle()" class="btn btn-success">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-1">
+          <button (click)="drawer.toggle()" class="btn btn-success">
       <span class="material-icons">
         people
       </span>
-    </button>
-  </mat-drawer-content>
+          </button>
+        </div>
+        <div class="col">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
 
+  </mat-drawer-content>
 </mat-drawer-container>
+
+

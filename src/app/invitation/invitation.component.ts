@@ -1,9 +1,17 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {NotificationService} from '../services/notification.service';
-import {Subscription} from 'rxjs';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {InvitationDialogComponent} from './invitation-dialog/invitation-dialog.component';
-import {InvitationService} from './services/invitation.service';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { NotificationService } from '../services/notification.service';
+import { Subscription } from 'rxjs';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { InvitationDialogComponent } from './invitation-dialog/invitation-dialog.component';
+import { InvitationService } from './services/invitation.service';
+import { GameService } from '../game/services/game.service';
+import { Router } from '@angular/router';
+import { Game } from '../game/models/Game';
+import { LocalStorageService } from '../services/local-storage.service';
 
 export interface DialogData {
   username: string;
@@ -12,38 +20,75 @@ export interface DialogData {
 @Component({
   selector: 'app-invitation',
   templateUrl: './invitation.component.html',
-  styleUrls: ['./invitation.component.css']
+  styleUrls: ['./invitation.component.css'],
 })
-export class InvitationComponent implements OnInit,OnDestroy {
-  notificationServicesSubscription:Subscription;
+export class InvitationComponent implements OnInit, OnDestroy {
+  inviteNotificationSubscription: Subscription;
+  acceptInvitationNotificationSubscription: Subscription;
+  gameNotificationSubscription: Subscription;
   invitation;
   dialogRef;
-  constructor(private notificationService:NotificationService , private dialog:MatDialog,private invitationService:InvitationService) {
-    this.notificationServicesSubscription = this.notificationService.invitationSubject.subscribe(invitation=>{
-      console.log("notification recivied");
-      this.invitation = invitation;
-      this.openDialog();
-    });
+  constructor(
+    private notificationService: NotificationService,
+    private dialog: MatDialog,
+    private invitationService: InvitationService,
+    private gameService: GameService,
+    private router: Router,
+    private localStorageService: LocalStorageService
+  ) {
+    this.inviteNotificationSubscription = this.notificationService.invitationSubject.subscribe(
+      (invitation) => {
+        console.log('notification recivied');
+        this.invitation = invitation;
+        this.openDialog();
+      }
+    );
+
+    this.acceptInvitationNotificationSubscription = this.notificationService.acceptInvitationSubject.subscribe(
+      (acceptInvitation) => {
+        this.gameService.createGame(acceptInvitation.user.id).subscribe(
+          (res) => {
+            this.gameService.game = new Game(
+              res.data.game.id,
+              this.localStorageService.getUser(),
+              acceptInvitation.user
+            );
+            this.router.navigateByUrl(`game/${res.data.game.id}`);
+          },
+          (res) => {
+            console.log(res);
+          }
+        );
+      }
+    );
+
+    this.gameNotificationSubscription = this.notificationService.gameSubject.subscribe(
+      (gameNotification) => {
+        this.gameService.game = gameNotification.game;
+        this.router.navigateByUrl(`game/${gameNotification.game.id}`);
+      }
+    );
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    this.notificationServicesSubscription.unsubscribe();
+    this.inviteNotificationSubscription.unsubscribe();
+    this.acceptInvitationNotificationSubscription.unsubscribe();
+    this.gameNotificationSubscription.unsubscribe();
   }
 
   openDialog() {
     this.dialogRef = this.dialog.open(InvitationDialogComponent, {
       width: '500px',
-      data: {username: "mohamed"}
+      data: { username: 'mohamed' },
     });
 
-    this.dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.invitationService.acceptInvitaion();
+    this.dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(this.invitation);
+        this.invitationService.acceptInvitation(this.invitation.user.id);
       }
     });
   }
-
 }

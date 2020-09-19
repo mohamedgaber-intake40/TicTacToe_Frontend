@@ -9,22 +9,25 @@ import { NotificationService } from '../services/notification.service';
 @Component({
   selector: 'app-online',
   templateUrl: './online.component.html',
-  styleUrls: ['./online.component.css']
+  styleUrls: ['./online.component.css'],
 })
 export class OnlineComponent implements OnInit, OnDestroy {
   onlineUsers: User[] = [];
   currentUser: User;
   onlineServiceSubjectSubscription: Subscription;
-  constructor(private onlineFeedService: OnlineFeedService,
+  constructor(
+    private onlineFeedService: OnlineFeedService,
     private onlineService: OnlineService,
     private localStorageService: LocalStorageService,
-    private notificationService: NotificationService) {
-
-    this.onlineServiceSubjectSubscription = this.onlineService.subject.subscribe(res=>{
-      // console.log('next fired');
-      // console.log(this.onlineUsers);
-      this.onlineUsers = this.onlineService.onlineUsers;
-    });
+    private notificationService: NotificationService
+  ) {
+    this.onlineServiceSubjectSubscription = this.onlineService.subject.subscribe(
+      (res) => {
+        // console.log('next fired');
+        // console.log(this.onlineUsers);
+        this.onlineUsers = this.onlineService.onlineUsers;
+      }
+    );
 
     this.currentUser = this.localStorageService.getUser();
   }
@@ -39,7 +42,7 @@ export class OnlineComponent implements OnInit, OnDestroy {
   }
 
   filterOnlineUsers() {
-    return this.onlineUsers.filter(user => {
+    return this.onlineUsers.filter((user) => {
       return user.id != this.currentUser.id;
     });
   }
@@ -49,7 +52,4 @@ export class OnlineComponent implements OnInit, OnDestroy {
     // console.log(user.id);
     this.notificationService.invitePlayer(user.id);
   }
-
-
-
 }

@@ -6,32 +6,41 @@ import { RegisterComponent } from '../Auth/register/register.component';
 import { AuthGuard } from '../Auth/services/auth.guard';
 import { RedirectGuard } from '../Auth/services/redirect.guard';
 import { OnlineComponent } from '../online/online.component';
+import { GameComponent } from '../game/game.component';
+import { AppComponent } from '../app.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: AppComponent,
+  //   children: [
+  //     {
+  //       path: 'game/:id',
+  //       component: GameComponent,
+  //       canActivate: [AuthGuard],
+  //     },
+  //   ],
+  // },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [RedirectGuard]
+    canActivate: [RedirectGuard],
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [RedirectGuard]
+    canActivate: [RedirectGuard],
   },
   {
     path: 'online',
     component: OnlineComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
-
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule]
+  imports: [CommonModule, RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModuleModule { }
+export class AppRoutingModuleModule {}

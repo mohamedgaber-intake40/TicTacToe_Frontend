@@ -14,8 +14,9 @@ import { FilterOnlinePipe } from './pipes/filter-online.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { InvitationComponent } from './invitation/invitation.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { InvitationDialogComponent } from './invitation/invitation-dialog/invitation-dialog.component';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { InvitationDialogComponent } from './invitation/invitation-dialog/invita
     FilterOnlinePipe,
     InvitationComponent,
     InvitationDialogComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,16 +37,16 @@ import { InvitationDialogComponent } from './invitation/invitation-dialog/invita
     AppRoutingModuleModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    MatDialogModule
-
+    MatDialogModule,
   ],
   exports: [MatSidenavModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor, multi: true
-    }
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
