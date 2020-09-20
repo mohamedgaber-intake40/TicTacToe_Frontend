@@ -14,11 +14,7 @@ const routes: Routes = [
   //   path: '',
   //   component: AppComponent,
   //   children: [
-  //     {
-  //       path: 'game/:id',
-  //       component: GameComponent,
-  //       canActivate: [AuthGuard],
-  //     },
+  //
   //   ],
   // },
   {
@@ -35,6 +31,11 @@ const routes: Routes = [
     path: 'online',
     component: OnlineComponent,
     canActivate: [AuthGuard],
+  },
+  {
+      path: 'game/:id',
+      component: GameComponent,
+      canActivate: [AuthGuard],
   },
 ];
 
