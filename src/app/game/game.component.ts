@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GameService } from './services/game.service';
 import { Game } from './models/Game';
 
@@ -7,14 +7,14 @@ import { Game } from './models/Game';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css'],
 })
-export class GameComponent implements OnInit,OnDestroy {
+export class GameComponent implements OnInit, OnDestroy {
   game: Game;
   constructor(private gameService: GameService) {
     this.game = this.gameService.game;
   }
 
-  refresh(){
-    this.ngOnInit()
+  refresh() {
+    this.ngOnInit();
   }
 
   ngOnInit(): void {}

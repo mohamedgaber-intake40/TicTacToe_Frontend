@@ -17,8 +17,8 @@ import { InvitationComponent } from './invitation/invitation.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InvitationDialogComponent } from './invitation/invitation-dialog/invitation-dialog.component';
 import { GameComponent } from './game/game.component';
-import {SidebarModule} from 'primeng/sidebar';
-import {ButtonModule} from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
 import { BoardComponent } from './game/board/board.component';
 import { CellComponent } from './game/board/cell/cell.component';
 
@@ -37,17 +37,16 @@ import { CellComponent } from './game/board/cell/cell.component';
     CellComponent,
   ],
   imports: [
-      BrowserModule,
-      FormsModule,
-      HttpClientModule,
-      AppRoutingModuleModule,
-      BrowserAnimationsModule,
-      MatSidenavModule,
-      MatDialogModule,
-      ButtonModule,
-      SidebarModule
-      // SidebarModule.forRoot()
-
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModuleModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatDialogModule,
+    ButtonModule,
+    SidebarModule,
+    // SidebarModule.forRoot()
   ],
   exports: [MatSidenavModule],
   providers: [

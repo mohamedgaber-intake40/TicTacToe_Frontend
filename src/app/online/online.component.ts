@@ -5,9 +5,9 @@ import { OnlineService } from './services/online.service';
 import { Subscription } from 'rxjs';
 import { LocalStorageService } from '../services/local-storage.service';
 import { NotificationService } from '../services/notification.service';
-import {SidebarModule} from 'primeng/sidebar';
-import {ButtonModule} from 'primeng/button';
-import {SidebarService} from './services/sidebar.service';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { SidebarService } from './services/sidebar.service';
 
 @Component({
   selector: 'app-online',
@@ -18,14 +18,14 @@ export class OnlineComponent implements OnInit, OnDestroy {
   onlineUsers: User[] = [];
   currentUser: User;
   display;
-  opened=false;
+  opened = false;
   onlineServiceSubjectSubscription: Subscription;
   constructor(
     private onlineFeedService: OnlineFeedService,
     private onlineService: OnlineService,
     private localStorageService: LocalStorageService,
     private notificationService: NotificationService,
-    private sidebarService:SidebarService
+    private sidebarService: SidebarService
   ) {
     this.onlineServiceSubjectSubscription = this.onlineService.subject.subscribe(
       (res) => {
@@ -37,9 +37,9 @@ export class OnlineComponent implements OnInit, OnDestroy {
 
     this.currentUser = this.localStorageService.getUser();
 
-    this.sidebarService.statusSubject.subscribe(status=>{
+    this.sidebarService.statusSubject.subscribe((status) => {
       this.opened = status;
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -63,7 +63,7 @@ export class OnlineComponent implements OnInit, OnDestroy {
     this.notificationService.invitePlayer(user.id);
   }
 
-  toggleSidebar(){
+  toggleSidebar() {
     this.sidebarService.toggleSidebar();
   }
 }

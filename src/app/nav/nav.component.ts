@@ -2,19 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../services/local-storage.service';
 import { User } from '../Auth/Models/user';
 import { LogoutService } from '../Auth/services/logout.service';
-import {SidebarService} from '../online/services/sidebar.service';
+import { SidebarService } from '../online/services/sidebar.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
   user: User;
-  constructor(private localStorageService: LocalStorageService, private logoutService: LogoutService , private sidebarService:SidebarService) {
-    this.localStorageService.subject.subscribe(user => {
+  constructor(
+    private localStorageService: LocalStorageService,
+    private logoutService: LogoutService,
+    private sidebarService: SidebarService
+  ) {
+    this.localStorageService.subject.subscribe((user) => {
       this.user = user;
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -26,8 +30,7 @@ export class NavComponent implements OnInit {
     // this.ngOnInit();
   }
 
-  toggleSidebar(){
+  toggleSidebar() {
     this.sidebarService.toggleSidebar();
   }
-
 }

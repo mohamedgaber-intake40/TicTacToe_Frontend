@@ -5,7 +5,7 @@ export class Move {
     public symbol: string
   ) {}
 
-  static create(data){
-    return new Move(data.pos_x,data.pos_y,data.symbol)
+  static create(data) {
+    return new Move(data.pos_x, data.pos_y, data.symbol);
   }
 }

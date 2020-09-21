@@ -33,9 +33,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-      path: 'game/:id',
-      component: GameComponent,
-      canActivate: [AuthGuard],
+    path: 'game/:id',
+    component: GameComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

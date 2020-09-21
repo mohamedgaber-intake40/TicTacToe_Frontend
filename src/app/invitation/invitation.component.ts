@@ -49,12 +49,12 @@ export class InvitationComponent implements OnInit, OnDestroy {
         this.gameService.createGame(acceptInvitation.user.id).subscribe(
           (res) => {
             const game = new Game(
-                res.data.game.id,
-                this.localStorageService.getUser(),
-                acceptInvitation.user
+              res.data.game.id,
+              this.localStorageService.getUser(),
+              acceptInvitation.user
             );
-            game.firstPlayer.symbol="X";
-            game.secondPlayer.symbol="Y";
+            game.firstPlayer.symbol = 'X';
+            game.secondPlayer.symbol = 'Y';
             this.gameService.game = game;
             this.router.navigateByUrl(`game/${res.data.game.id}`);
           },
@@ -68,8 +68,8 @@ export class InvitationComponent implements OnInit, OnDestroy {
     this.gameNotificationSubscription = this.notificationService.gameSubject.subscribe(
       (gameNotification) => {
         const game = gameNotification.game;
-        game.firstPlayer.symbol="X";
-        game.secondPlayer.symbol="Y";
+        game.firstPlayer.symbol = 'X';
+        game.secondPlayer.symbol = 'Y';
         this.gameService.game = game;
         this.router.navigateByUrl(`game/${gameNotification.game.id}`);
       }

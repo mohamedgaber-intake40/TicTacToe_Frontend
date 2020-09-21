@@ -6,8 +6,8 @@ export class User {
     public name: string,
     public email: string,
     public token: Token = null,
-    public score:number = null,
-    public symbol:string = null
+    public score: number = null,
+    public symbol: string = null
   ) {}
 
   static createUser(data, withToken: boolean) {
