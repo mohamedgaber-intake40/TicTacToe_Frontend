@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../services/local-storage.service';
 import { User } from '../Auth/Models/user';
 import { LogoutService } from '../Auth/services/logout.service';
+import {SidebarService} from '../online/services/sidebar.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,7 @@ import { LogoutService } from '../Auth/services/logout.service';
 })
 export class NavComponent implements OnInit {
   user: User;
-  constructor(private localStorageService: LocalStorageService, private logoutService: LogoutService) {
+  constructor(private localStorageService: LocalStorageService, private logoutService: LogoutService , private sidebarService:SidebarService) {
     this.localStorageService.subject.subscribe(user => {
       this.user = user;
     })
@@ -23,6 +24,10 @@ export class NavComponent implements OnInit {
     e.preventDefault();
     this.logoutService.logout();
     // this.ngOnInit();
+  }
+
+  toggleSidebar(){
+    this.sidebarService.toggleSidebar();
   }
 
 }

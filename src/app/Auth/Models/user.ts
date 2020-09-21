@@ -5,7 +5,9 @@ export class User {
     public id: string,
     public name: string,
     public email: string,
-    public token: Token = null
+    public token: Token = null,
+    public score:number = null,
+    public symbol:string = null
   ) {}
 
   static createUser(data, withToken: boolean) {

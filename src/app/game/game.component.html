@@ -1,6 +1,41 @@
-<h1>{{game.firstPlayer.name}}
-</h1>
+<!--<h1>{{game.firstPlayer.name}}-->
+<!--</h1>-->
+<!---->
+<!--<h1>-->
+  <!--{{game.secondPlayer.name}}-->
+<!--</h1>-->
 
-<h1>
-  {{game.secondPlayer.name}}
-</h1>
+<div class="container">
+  <div class="row">
+
+    <div class="col-6">
+      <h1 class="text-center">
+        Player One :
+        <span>{{game.firstPlayer.name}}</span>
+      </h1>
+      <h1 class="text-center">
+        Score :
+        <span>0</span>
+      </h1>
+      <h1 class="text-center">
+        <span>{{game.firstPlayer.symbol}}</span>
+      </h1>
+    </div>
+
+    <div class="col-6">
+      <h1 class="text-center">
+        Player Two :
+        <span>{{game.secondPlayer.name}}</span>
+      </h1>
+      <h1 class="text-center">
+        Score :
+        <span>0</span>
+      </h1>
+      <h1 class="text-center">
+        <span>{{game.secondPlayer.symbol}}</span>
+      </h1>
+    </div>
+  </div>
+    <app-board ></app-board>
+  <button (click)="refresh()">refresh</button>
+</div>

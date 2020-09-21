@@ -1,39 +1,80 @@
-<mat-drawer-container class="example-container" [hasBackdrop]="1">
-  <mat-drawer #drawer mode="push" opened>
-    <!--    I'm a drawer-->
+<!--<mat-drawer-container class="example-container" [hasBackdrop]="1">-->
+  <!--<mat-drawer #drawer mode="push" opened>-->
+    <!--<div class="container">-->
+      <!--<div class="row mt-1 user-row" *ngFor="let user of onlineUsers">-->
+        <!--<div class="col-8 p-1">-->
+          <!--<span class="material-icons text-success">-->
+            <!--account_circle-->
+          <!--</span>-->
+          <!--{{user.name}}-->
+        <!--</div>-->
+        <!--<div class="col-4">-->
+          <!--<button class="btn btn-success btn-sm" *ngIf="user.id != currentUser.id" (click)="onPlay(user)">Play</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</mat-drawer>-->
+
+  <!--<mat-drawer-content>-->
+<!---->
+    <!--<div class="container-fluid">-->
+      <!--<div class="row">-->
+        <!--<div class="col-1">-->
+          <!--<button (click)="drawer.toggle()" class="btn btn-success">-->
+      <!--<span class="material-icons">-->
+        <!--people-->
+      <!--</span>-->
+          <!--</button>-->
+        <!--</div>-->
+        <!--<div class="col">-->
+          <!--<router-outlet></router-outlet>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+<!---->
+  <!--</mat-drawer-content>-->
+<!--</mat-drawer-container>-->
+
+<!--<ng-sidebar-container>-->
+  <!--<ng-sidebar [(opened)]="opened" mode="push">-->
+    <!--<div class="container">-->
+      <!--<div class="row mt-1 user-row" *ngFor="let user of onlineUsers">-->
+        <!--<div class="col-8 p-1">-->
+          <!--<span class="material-icons text-success">-->
+            <!--account_circle-->
+          <!--</span>-->
+          <!--{{user.name}}-->
+        <!--</div>-->
+        <!--<div class="col-4">-->
+          <!--<button class="btn btn-success btn-sm" *ngIf="user.id != currentUser.id" (click)="onPlay(user)">Play</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</ng-sidebar>-->
+  <!--<div ng-sidebar-content>-->
+    <!--<button (click)="toggleSidebar()">Toggle sidebar</button>-->
+  <!--</div>-->
+<!--</ng-sidebar-container>-->
+
+<!--<p-sidebar [(visible)]="display" >-->
+    <!--<h1 style="font-weight:normal">Left Sidebar</h1>-->
+    <!--<p-button type="button" (click)="display = false" label="Save" styleClass="p-button-success"></p-button>-->
+    <!--<p-button type="button" (click)="display = false" label="Cancel" styleClass="p-button-secondary"></p-button>-->
+<!--</p-sidebar>-->
+<p-sidebar [(visible)]="opened" (onHide)="toggleSidebar()">
     <div class="container">
-      <div class="row mt-1 user-row" *ngFor="let user of onlineUsers">
-        <div class="col-8 p-1">
+        <div class="row mt-1 user-row" *ngFor="let user of onlineUsers">
+            <div class="col-7 p-1">
           <span class="material-icons text-success">
             account_circle
           </span>
-          {{user.name}}
+                {{user.name}}
+            </div>
+            <div class="col-4">
+                <button class="btn btn-success btn-sm" *ngIf="user.id != currentUser.id" (click)="onPlay(user)">Play</button>
+            </div>
         </div>
-        <div class="col-4">
-          <button class="btn btn-success btn-sm" *ngIf="user.id != currentUser.id" (click)="onPlay(user)">Play</button>
-        </div>
-      </div>
     </div>
-  </mat-drawer>
-
-  <mat-drawer-content>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-1">
-          <button (click)="drawer.toggle()" class="btn btn-success">
-      <span class="material-icons">
-        people
-      </span>
-          </button>
-        </div>
-        <div class="col">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
-
-  </mat-drawer-content>
-</mat-drawer-container>
+</p-sidebar>
 
 

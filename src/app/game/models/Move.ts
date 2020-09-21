@@ -1,7 +1,11 @@
 export class Move {
   constructor(
-    public pos_x: number,
-    public pos_y: number,
+    public posX: number,
+    public posY: number,
     public symbol: string
   ) {}
+
+  static create(data){
+    return new Move(data.pos_x,data.pos_y,data.symbol)
+  }
 }
