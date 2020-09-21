@@ -1,3 +1,6 @@
 <div (click)="onClick()" class="cell" >
-
+  <button [disabled]="disabled" >
+    <img src="assets/images/o.png" alt="" *ngIf="symbol == 'o' "  class="img-fluid">
+    <img src="assets/images/x.png" alt="" *ngIf="symbol == 'x' "  class="img-fluid">
+  </button>
 </div>

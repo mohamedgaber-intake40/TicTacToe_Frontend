@@ -21,6 +21,9 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { BoardComponent } from './game/board/board.component';
 import { CellComponent } from './game/board/cell/cell.component';
+import { ConfirmDialog, ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { PlayAgainComponent } from './game/play-again/play-again.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { CellComponent } from './game/board/cell/cell.component';
     GameComponent,
     BoardComponent,
     CellComponent,
+    PlayAgainComponent,
+    // ConfirmDialog,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,8 @@ import { CellComponent } from './game/board/cell/cell.component';
     MatDialogModule,
     ButtonModule,
     SidebarModule,
+    ConfirmDialogModule,
+    // ConfirmDialogModule,
     // SidebarModule.forRoot()
   ],
   exports: [MatSidenavModule],
@@ -55,6 +62,7 @@ import { CellComponent } from './game/board/cell/cell.component';
       useClass: AuthInterceptor,
       multi: true,
     },
+    ConfirmationService,
   ],
   bootstrap: [AppComponent],
 })

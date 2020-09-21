@@ -1,5 +1,5 @@
 <div class="row text-center mt-5">
-    <div class="col-4 p-5 cell" *ngFor="let x of [0,1,2]">
+    <div class="col-4 cell" *ngFor="let x of [0,1,2]">
         <ng-container *ngFor="let y of [0,1,2]">
             <app-cell [posX]="x" [posY]="y"></app-cell>
         </ng-container>

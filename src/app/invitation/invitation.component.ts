@@ -53,8 +53,8 @@ export class InvitationComponent implements OnInit, OnDestroy {
               this.localStorageService.getUser(),
               acceptInvitation.user
             );
-            game.firstPlayer.symbol = 'X';
-            game.secondPlayer.symbol = 'Y';
+            game.firstPlayer.symbol = 'x';
+            game.secondPlayer.symbol = 'o';
             this.gameService.game = game;
             this.router.navigateByUrl(`game/${res.data.game.id}`);
           },
@@ -68,8 +68,8 @@ export class InvitationComponent implements OnInit, OnDestroy {
     this.gameNotificationSubscription = this.notificationService.gameSubject.subscribe(
       (gameNotification) => {
         const game = gameNotification.game;
-        game.firstPlayer.symbol = 'X';
-        game.secondPlayer.symbol = 'Y';
+        game.firstPlayer.symbol = 'x';
+        game.secondPlayer.symbol = 'o';
         this.gameService.game = game;
         this.router.navigateByUrl(`game/${gameNotification.game.id}`);
       }

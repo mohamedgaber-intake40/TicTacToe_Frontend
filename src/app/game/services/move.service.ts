@@ -2,12 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Move } from '../models/Move';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { GameService } from './game.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoveService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private localStorageService: LocalStorageService,
+    private gameService: GameService
+  ) {}
 
   playMove(gameId, move: Move) {
     const data = {
@@ -20,5 +26,14 @@ export class MoveService {
         return Move.create(res);
       })
     );
+  }
+
+  getCurrentSymbol() {
+    const currentUser = this.localStorageService.getUser();
+    const game = this.gameService.game;
+    if (currentUser.id == game.firstPlayer.id) {
+      return game.firstPlayer.symbol;
+    }
+    return game.secondPlayer.symbol;
   }
 }
