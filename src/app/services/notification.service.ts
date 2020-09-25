@@ -24,7 +24,7 @@ export class NotificationService {
     const user = this.localStorageService.getUser();
     if (user) {
       this.socket.private(`user.${user.id}`).notification((notification) => {
-        console.log(notification);
+        // console.log(notification);
         const notificationObj = new Notification(
           notification.user,
           notification.type
@@ -33,23 +33,23 @@ export class NotificationService {
         if (notificationObj.type == 'invite.notification') {
           this.invitationSubject.next(notificationObj);
         }
+
         if (notificationObj.type == 'accept.invite.notification') {
           this.acceptInvitationSubject.next(notificationObj);
         }
+
         if (notificationObj.type == 'game.notification') {
-          console.log('game notification');
           const gameNotification = new GameNotification(
             notificationObj.user,
             notificationObj.type,
             Game.create(notification.game)
           );
-          console.log(gameNotification);
           this.gameSubject.next(gameNotification);
         }
       });
     }
   }
-
+  //
   invitePlayer(id) {
     this.httpClient.get(`api/invite/${id}`).subscribe((res) => {
       // console.log(res);

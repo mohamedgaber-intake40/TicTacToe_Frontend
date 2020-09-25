@@ -22,15 +22,16 @@
                     <a class="nav-link" href="/logout" routerLinkActive="active" (click)="onLogout($event)">Logout</a>
                 </li>
                 <li>
-                    <a class="nav-link" routerLink="/online" routerLinkActive="active">Online List</a>
+<!--                    <a class="nav-link" routerLink="/online" routerLinkActive="active">Online List</a>-->
                 </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="toggleSidebar()">Online List</a>
+              </li>
                 <li class="nav-item">
                     <span class="nav-link text-danger">{{user.name}}</span>
                 </li>
             </ng-container>
-            <li class="nav-item">
-                <a class="nav-link" (click)="toggleSidebar()">Online List</a>
-            </li>
+
 
 
         </ul>

@@ -4,12 +4,16 @@ import Pusher from 'pusher-js';
 import Echo from 'laravel-echo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SocketsService {
   user;
   echo;
   constructor(private localStorageService: LocalStorageService) {
+    console.log('sockets constructor called');
+    this.localStorageService.subject.subscribe((res) => {
+      this.user = this.localStorageService.getUser();
+    });
     this.user = this.localStorageService.getUser();
     window['pusher'] = Pusher;
     if (this.user) {
@@ -21,15 +25,14 @@ export class SocketsService {
         authEndpoint: 'api/broadcasting/auth',
         auth: {
           headers: {
-            Authorization: "Bearer " + this.user.token.access_token,
-            Accept: 'Application/json'
-          }
+            Authorization: 'Bearer ' + this.user.token.access_token,
+            Accept: 'Application/json',
+          },
         },
         wsHost: '127.0.0.1',
         wsPort: 6001,
         disableStats: false,
       });
     }
-
   }
 }

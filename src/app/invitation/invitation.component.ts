@@ -12,6 +12,8 @@ import { GameService } from '../game/services/game.service';
 import { Router } from '@angular/router';
 import { Game } from '../game/models/Game';
 import { LocalStorageService } from '../services/local-storage.service';
+import { ConfirmationService } from 'primeng/api';
+import { Notification } from '../Models/Notification';
 
 export interface DialogData {
   username: string;
@@ -26,7 +28,7 @@ export class InvitationComponent implements OnInit, OnDestroy {
   inviteNotificationSubscription: Subscription;
   acceptInvitationNotificationSubscription: Subscription;
   gameNotificationSubscription: Subscription;
-  invitation;
+  invitation: Notification;
   dialogRef;
   constructor(
     private notificationService: NotificationService,
@@ -34,11 +36,11 @@ export class InvitationComponent implements OnInit, OnDestroy {
     private invitationService: InvitationService,
     private gameService: GameService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private confirmationService: ConfirmationService
   ) {
     this.inviteNotificationSubscription = this.notificationService.invitationSubject.subscribe(
       (invitation) => {
-        console.log('notification recivied');
         this.invitation = invitation;
         this.openDialog();
       }
@@ -85,16 +87,24 @@ export class InvitationComponent implements OnInit, OnDestroy {
   }
 
   openDialog() {
-    this.dialogRef = this.dialog.open(InvitationDialogComponent, {
-      width: '500px',
-      data: { username: 'mohamed' },
+    // this.dialogRef = this.dialog.open(InvitationDialogComponent, {
+    //   width: '500px',
+    //   data: { username: 'mohamed' },
+    // });
+
+    this.confirmationService.confirm({
+      message: `${this.invitation.user.name} invite you , agree?`,
+      key: 'invitation',
+      accept: () => {
+        //Actual logic to perform a confirmation
+        this.invitationService.acceptInvitation(this.invitation.user.id);
+      },
     });
 
-    this.dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log(this.invitation);
-        this.invitationService.acceptInvitation(this.invitation.user.id);
-      }
-    });
+    // this.dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     this.invitationService.acceptInvitation(this.invitation.user.id);
+    //   }
+    // });
   }
 }

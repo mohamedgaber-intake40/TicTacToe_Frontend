@@ -32,6 +32,7 @@ export class OnlineComponent implements OnInit, OnDestroy {
         // console.log('next fired');
         // console.log(this.onlineUsers);
         this.onlineUsers = this.onlineService.onlineUsers;
+        // this.ngOnInit();
       }
     );
 

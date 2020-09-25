@@ -10,7 +10,6 @@ export class SidebarService {
   constructor() {}
 
   toggleSidebar() {
-    console.log(this.status);
     this.status = !this.status;
     this.statusSubject.next(this.status);
   }

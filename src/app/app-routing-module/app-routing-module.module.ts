@@ -27,11 +27,11 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [RedirectGuard],
   },
-  {
-    path: 'online',
-    component: OnlineComponent,
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'online',
+  //   component: OnlineComponent,
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: 'game/:id',
     component: GameComponent,

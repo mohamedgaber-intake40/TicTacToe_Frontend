@@ -1,7 +1,26 @@
 .cell{
     height: 100%;
     width: 100%;
-    min-height: 200px;
-    min-width: 200px;
-    border: 1px solid black;
+    min-height: 100px;
+    min-width: 100px;
+  margin-top: 30px;
+}
+
+.cell-btn{
+  height: 100%;
+  width: 100%;
+  background: transparent;
+
+}
+
+.img{
+  max-width: 50px !important;
+}
+
+.win-pos{
+  background: #8ae38a;
+}
+
+.lose-pos{
+  background: black;
 }

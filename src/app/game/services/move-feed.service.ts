@@ -23,7 +23,6 @@ export class MoveFeedService {
     this.currentSymbol = this.moveService.getCurrentSymbol();
     this.socket.join(this.channel).listen('.move.played', (e) => {
       if (e.move.symbol != this.currentSymbol) {
-        console.log('.move.played received');
         this.moveSubject.next(Move.create(e.move));
       }
     });
